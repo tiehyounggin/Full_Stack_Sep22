@@ -1,0 +1,158 @@
+<html>
+<head>
+
+    <title>Hello there, welcome to my page - YG</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        #q2Validation{
+            display: none;
+            color: red;
+        }
+        #q2Form {
+
+            display: none;
+
+        }
+
+        .form-check-input.radio_custom {
+
+            float: none;
+
+            margin-left: 0;
+
+        }
+
+        .left_content {
+
+            border-right: 1px dotted black;
+
+        }
+
+        .custom_btn:focus {
+            box-shadow: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container-fluid p-5 bg-primary text-white">
+        <div class="row text-center">
+            <h1>Hello there, welcome to my page - YG</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-12 bg-white text-black">
+                <div class="row bg-light">
+                    <div class="col-4 p-3 text-center left_content">
+                        <p class="text-center">Select an option:</p>
+                        <div class="form-check ">
+                            <input onclick="radioOption()" class="form-check-input radio_custom" type="radio"
+                                name="flexRadioDefault" id="q1Radio" checked>
+                            <label class="form-check-label" for="q1Radio">
+                                Question 1 - Clock
+                            </label>
+                        </div>
+
+                        <div class="form-check ">
+                            <input onclick="radioOption()" class="form-check-input radio_custom" type="radio"
+                                name="flexRadioDefault" id="q2Radio">
+                            <label class="form-check-label" for="q2Radio">
+                                Question 2 - Age calculator
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="col-8 p-3" id="q1Form">
+                        <span>The time now is:</span>
+                        <h1 id="clockID"></h1>
+
+                    </div>
+
+                    <div class="col-8 p-3" id="q2Form">
+                        <form>
+                            <div class="form-group row">
+                                <label for="getInputID" class="col-3 col-form-label">Enter your birthdate</label>
+                                <div class="col-6">
+                                    <input type="date" class="form-control" id="getInputID">
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+
+                                    </div>
+                                    <div class="col-6" id="q2Validation">
+                                        Please ensure field is not empty.
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-3" id="q2OutputBtn">
+                                <button onclick="calculateAge()" class="btn btn-primary">Calculate me!!</button>
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <span>The age is:</span>
+                                <h1 id="q2AnsArea"></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    setInterval(myClock, 1000);
+
+    function myClock(){
+        let date = new Date();
+        let time = date.toLocaleTimeString([], {hourCycle: 'h23', hour: '2-digit', minute: '2-digit', second: '2-digit'});
+
+        document.getElementById("clockID").innerHTML = time;
+    }
+
+    function radioOption() {
+        if (document.getElementById("q1Radio").checked) {
+            document.getElementById("q1Form").style.display = "block";
+            document.getElementById("q2Form").style.display = "none";
+
+        } else {
+            document.getElementById("q1Form").style.display = "none";
+            document.getElementById("q2Form").style.display = "block";
+        }
+
+    }
+
+    function calculateAge(){
+        let input = document.getElementById("getInputID").value;
+
+        if(input == ""){
+            document.getElementById("q2Validation").style.display = "block";
+        }else{
+            document.getElementById("q2Validation").style.display = "none";
+            let birthYear = new Date(input).getFullYear();
+            let currentYear = new Date().getFullYear();
+
+            let output = currentYear - birthYear;
+            output += " years old";
+
+            document.getElementById("q2AnsArea").innerHTML = output;
+        }
+
+        
+    }
+
+</script>
