@@ -1,0 +1,160 @@
+<html>
+<head>
+
+    <title>Hello there, welcome to my page - YG</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        #localValValidation, #sessionValValidation{
+            display: none;
+            color: red;
+        }
+        #q2Form {
+
+            display: none;
+
+        }
+
+        .form-check-input.radio_custom {
+
+            float: none;
+
+            margin-left: 0;
+
+        }
+
+        .left_content {
+
+            border-right: 1px dotted black;
+
+        }
+
+        .custom_btn:focus {
+            box-shadow: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container-fluid p-5 bg-primary text-white">
+        <div class="row text-center">
+            <h1>Hello there, welcome to my page - YG</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-12 bg-white text-black">
+                <div class="row bg-light">
+                    <div class="col-4 p-3 text-center left_content">
+                        <p class="text-center">Select an option:</p>
+                        <div class="form-check ">
+                            <input onclick="radioOption()" class="form-check-input radio_custom" type="radio"
+                                name="flexRadioDefault" id="q1Radio" checked>
+                            <label class="form-check-label" for="q1Radio">
+                                Question 1
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="col-8 p-3">
+                        <form>
+                            <div class="form-group row">
+                                <label for="localValInput" class="col-3 col-form-label">Enter value for local storage:</label>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" id="localValInput" placeholder="value">
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+
+                                    </div>
+                                    <div class="col-6" id="localValValidation">
+                                        Please ensure field is not empty.
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-3" id="setLocalVal">
+                                <button onclick="setLocalVal(setLocalVal)" class="btn btn-primary">Set local storage!!</button>
+                            </div>
+                            <div class="col-3" id="getLocalVal">
+                                <button onclick="getLocalVal(getLocalVal)" class="btn btn-primary">Print local storage!!</button>
+                            </div>
+                        </div><br>
+
+                        <form>
+                            <div class="form-group row">
+                                <label for="sessionValInput" class="col-3 col-form-label">Enter cookie for session storage:</label>
+                                <div class="col-6">
+                                    <input type="text" class="form-control" id="sessionValInput" placeholder="value">
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+
+                                    </div>
+                                    <div class="col-6" id="sessionValValidation">
+                                        Please ensure field is not empty.
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            <div class="col-3" id="setSessionVal">
+                                <button onclick="setSessionVal(setSessionVal)" class="btn btn-primary">Set session storage!!</button>
+                            </div>
+                            <div class="col-3" id="getSessionVal">
+                                <button onclick="getSessionVal(getSessionVal)" class="btn btn-primary">Print session storage!!</button>
+                            </div>
+                        </div><br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function setLocalVal(id){
+        let input = document.getElementById("localValInput").value;
+
+        if(!input){
+            document.getElementById("localValValidation").style.display = "block";
+        }else{
+            document.getElementById("localValValidation").style.display = "none";
+            localStorage.setItem("name", input);
+        }
+        
+    }
+
+    function getLocalVal(id){
+
+        console.log(localStorage.getItem("name"));
+    }
+
+    function setSessionVal(id){
+        let input = document.getElementById("sessionValInput").value;
+
+        
+
+        if(!input){
+            document.getElementById("sessionValValidation").style.display = "block";
+        }else{
+            document.getElementById("sessionValValidation").style.display = "none";
+            sessionStorage.setItem("cookie", input);
+        }
+    }
+
+    function getSessionVal(id){
+        console.log(sessionStorage.getItem("cookie"));
+    }
+
+</script>
