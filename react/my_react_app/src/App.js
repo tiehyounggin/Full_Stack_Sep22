@@ -1,24 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+import Header from './Header';
+import Contact from './Contact';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello there. Welcome to my first react - YG
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React NOW or LATER... or NEVER
-        </a>
-      </header>
-    </div>
+    <>
+    {/* <h1>Hello, this is from App.js</h1> */}
+    <Header/>
+    <Router>
+      <Routes>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+      </Routes>
+    </Router>
+    </>
   );
 }
 

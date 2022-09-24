@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.menu{
+  background-color: aliceblue;
+}
+
+.menu li{
+  display: inline-block;
+  margin: 5px;
+  padding-right: 5px;
+  border-right: 1px solid black;
+}
+
+.menu li a{
+  text-decoration: none;
+}
