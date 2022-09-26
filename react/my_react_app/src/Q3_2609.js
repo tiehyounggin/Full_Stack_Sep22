@@ -4,7 +4,7 @@ function Q3_2609(){
 
     const [pageNum, setPageNum] = useState("");
     const [validation, setValidation] = useState(false);
-    const [anArr, setAnArr] = useState();
+    const [anArr, setAnArr] = useState([]);
     const [anObj, setAnObj] = useState({});
 
     const getBtn = () => {
@@ -50,15 +50,15 @@ function Q3_2609(){
                 <span style={{display:"block", borderBottom:"1px solid black"}}>Output:</span>
                 <br></br>
                     {
-                        (anArr && anArr.length <= 0) ? "No data" : ""
-                    }
-                    <table className="table table-hover table_main" style={{backgroundColor:"whitesmoke"}}><thead><tr><th scope="col">first_name</th><th scope="col">avatar</th></tr></thead><tbody>
+                        (anArr && anArr.length <= 0) ? "No data" : <table className="table table-hover table_main" style={{backgroundColor:"whitesmoke"}}><thead><tr><th scope="col">first_name</th><th scope="col">avatar</th></tr></thead><tbody>
+                    
+                    
                     {
                         anArr && anArr.map((anObj, index) => {
                             return <tr onClick={() => {setAnObj(anObj); console.log("Here "+ anObj)}} key={index}><td>{anObj.first_name}</td><td><img src={anObj.avatar} width="150px" height="150px"></img></td></tr>
                         })
                     }
-                    </tbody></table>
+                    </tbody></table>}
                     <br></br>
                     {
                         (Object.keys(anObj).length > 0) ? <table className="table table-hover" style={{backgroundColor:"whitesmoke"}}>
