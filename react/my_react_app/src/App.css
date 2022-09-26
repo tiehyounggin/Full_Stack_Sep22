@@ -39,6 +39,7 @@
 
 .menu{
   background-color: aliceblue;
+  margin-bottom: 0px;
 }
 
 .menu li{
@@ -50,4 +51,36 @@
 
 .menu li a{
   text-decoration: none;
+}
+
+.row_main{
+  width: 80%;
+  background-color: aquamarine;
+  margin: auto;
+}
+
+.row_main div{
+  /* padding: 10px; */
+  margin: 3px 0;
+}
+
+#mainLabelDiv label{
+  display: block;
+}
+
+.highlight_red{
+  color: red;
+}
+
+.table_main tr{
+  cursor: pointer;
+}
+
+th{
+  text-align: center;
+}
+
+td{
+  text-align: center;
+  vertical-align: middle;
 }

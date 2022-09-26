@@ -5,6 +5,7 @@ import Home from './Home';
 import About from './About';
 import Header from './Header';
 import Contact from './Contact';
+import Homework2609 from './Homework2609';
 
 function App() {
   return (
@@ -13,9 +14,11 @@ function App() {
     <Header/>
     <Router>
       <Routes>
+        <Route path="/" element={<Home/>}></Route>
         <Route path="/home" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/contact" element={<Contact/>}/>
+        <Route path="/homework2609" element={<Homework2609/>}></Route>
       </Routes>
     </Router>
     </>
