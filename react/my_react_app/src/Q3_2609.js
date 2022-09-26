@@ -61,7 +61,7 @@ function Q3_2609(){
                     </tbody></table>
                     <br></br>
                     {
-                        anObj ? <table className="table table-hover" style={{backgroundColor:"whitesmoke"}}>
+                        (Object.keys(anObj).length > 0) ? <table className="table table-hover" style={{backgroundColor:"whitesmoke"}}>
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
