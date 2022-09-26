@@ -26,7 +26,7 @@ function Q2_2609(){
                 {
                     anArr.map((anObj, index) => {
                         return <div key={index}>
-                            <span className={anObj.age > 50 ? "highlight_red":""}>Name: {anObj.name} -- Age: {anObj.age}</span>
+                            <span className={anObj.age > 40 ? "highlight_red":""}>Name: {anObj.name} -- Age: {anObj.age}</span>
                         </div>
                     })
                 }
