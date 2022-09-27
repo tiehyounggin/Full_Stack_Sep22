@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "./Header";
 
 
 function Home(){
@@ -24,6 +25,7 @@ function Home(){
 
     return(
         <>
+            <Header current = "home"/>
             <h1>Home is here</h1>
             <h1>{username}</h1>
             <input onChange={(e) => text_change(e)} type="text" placeholder="Enter username"></input>

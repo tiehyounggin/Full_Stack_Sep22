@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "./Header";
 import Q1_2609 from "./Q1_2609";
 import Q2_2609 from "./Q2_2609";
 import Q3_2609 from "./Q3_2609";
@@ -13,9 +14,10 @@ function Homework2609(){
 
     return(
         <>
+            <Header current = "homework2609"/>
             <div className="container-fluid" style={{backgroundColor:"beige", padding:"1%"}}>
                 <div className="row row_main">
-                    <div className="col-3 text-center" style={{borderRight:"1px solid grey"}}>
+                    <div className="col-3 text-center" style={{borderRight:"1px solid grey", margin:"auto", padding:"5% 0"}}>
                         <div id="mainLabelDiv">
                             <label>
                                 <input type="radio" value="q1Show" name="radioOption" checked={myRadio === "q1Show"} onChange={radio_change}/>
