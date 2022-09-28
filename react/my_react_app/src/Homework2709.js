@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import MyList from "./MyList";
 
@@ -32,10 +32,23 @@ class Homework2709 extends React.Component{
                 }
             ]
         }
+
+        
     }
+
+    // componentDidMount(){
+
+    // }
+
+    //clear session/ cache
+    // componentWillUnmount(){
+
+    // }
+
 
     getBtn = () => {
         // console.log(this.state.pageNumber);
+        // this.setState({"pageNumber": ""});
 
         fetch("https://reqres.in/api/users?page=" + this.state.pageNumber,
         {
@@ -78,10 +91,10 @@ class Homework2709 extends React.Component{
                             <div>
                                 <div className="row form-group">
                                     <div className="col-2">
-                                        <label for="inputName">Enter page:</label>
+                                        <label>Enter page:</label>
                                     </div>
                                     <div className="col-4">
-                                        <input id="inputName" type="text" className="form-control" placeholder="1, 2, 3..." onChange={e => this.setState({"pageNumber": e.target.value}) }/>
+                                        <input value={this.state.pageNumber} type="text" className="form-control" placeholder="1, 2, 3..." onChange={e => this.setState({"pageNumber": e.target.value}) }/>
                                         {/* {validation ? <span className="highlight_red">Please ensure field is not empty!!</span> : ""} */}
                                     </div>
                                     <div className="form-group">
@@ -102,18 +115,18 @@ class Homework2709 extends React.Component{
                             <h2>POST api</h2>
                             <div className="row form-group">
                                 <div className="col-2">
-                                    <label for="inputName">Enter name:</label>
+                                    <label>Enter name:</label>
                                 </div>
                                 <div className="col-4">
-                                    <input id="inputName" type="text" className="form-control" placeholder="John" onChange={e => this.setState({"name": e.target.value})}/>
+                                    <input type="text" className="form-control" placeholder="John" onChange={e => this.setState({"name": e.target.value})}/>
                                 </div>
                             </div>
                             <div className="row form-group">
                                 <div className="col-2">
-                                    <label for="inputJob">Enter job:</label>
+                                    <label>Enter job:</label>
                                 </div>
                                 <div className="col-4">
-                                    <input id="inputJob" type="text" className="form-control" placeholder="Worker" onChange={e => this.setState({"job": e.target.value})}/>
+                                    <input type="text" className="form-control" placeholder="Worker" onChange={e => this.setState({"job": e.target.value})}/>
                                     {/* {validation ? <span className="highlight_red">Please ensure field is not empty!!</span> : ""} */}
                                 </div>
                             </div>

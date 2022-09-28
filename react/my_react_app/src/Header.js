@@ -27,3 +27,6 @@ function Header(props){
 }
 
 export default Header;
+
+// anchor tag refreshes page, navlink no refresh page only particular componenet is updated, more control over react life cycle methods.
+// <NavLink to="/home">Home</NavLink> 
