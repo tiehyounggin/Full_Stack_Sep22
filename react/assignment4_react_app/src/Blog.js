@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Footer from "./Footer";
+import Header from "./Header";
 
 function Blog(){
 
@@ -21,6 +23,7 @@ function Blog(){
 
     return(
         <>
+        <Header isActive="blog"/>
             <div id="body">
                 <div className="header">
                     <div>
@@ -56,6 +59,7 @@ function Blog(){
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>   
     )
 }

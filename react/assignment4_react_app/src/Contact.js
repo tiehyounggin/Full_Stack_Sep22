@@ -1,6 +1,10 @@
+import Footer from "./Footer";
+import Header from "./Header";
+
 function Contact(){
     return(
         <>
+        <Header isActive="contact"/>
             <div id="body" className="contact">
                 <div className="header">
                     <div>
@@ -33,6 +37,7 @@ function Contact(){
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

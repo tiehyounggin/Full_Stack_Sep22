@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.font_colour{
+  color: #cb3362 !important;
+}
+
+.secondary_custom{
+  left: -27px;
+}

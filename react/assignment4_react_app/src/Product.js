@@ -1,6 +1,10 @@
+import Footer from "./Footer";
+import Header from "./Header";
+
 function Product(){
     return(
         <>
+        <Header isActive="product"/>
             <div id="body">
                 <div className="header">
                     <div>
@@ -64,6 +68,7 @@ function Product(){
                     </ul>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

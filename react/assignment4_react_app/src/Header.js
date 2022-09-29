@@ -1,31 +1,33 @@
-function Header(){
+import {NavLink} from 'react-router-dom';
+
+function Header(props){
     return(
         <>
             <div id="header">
                 <div>
                     <a href="index.html" className="logo"><img src="images/logo.png" alt=""/></a>
                     <ul id="navigation">
-                        <li className="selected">
-                            <a href="index.html">Home</a>
+                        <li className={props.isActive =="home" ? "menu selected" : ""}>
+                            <NavLink to="/home">Home</NavLink>
                         </li>
-                        <li className="menu">
-                            <a href="about.html">About</a>
-                            <ul className="primary">
+                        <li className={props.isActive == "about" ? "menu selected" : "menu"}>
+                            <NavLink to="/about">About</NavLink>
+                            <ul className="primary" id={props.isActive == "product" ? "selected" : ""}>
                                 <li>
-                                    <a href="product.html">Product</a>
+                                    <NavLink to="/product">Product</NavLink>
                                 </li>
                             </ul>
                         </li>
-                        <li className="menu">
-                            <a href="blog.html">Blog</a>
-                            <ul className="secondary">
+                        <li className={props.isActive == "blog" ? "menu selected" : "menu"}>
+                            <NavLink to="/blog">Blog</NavLink>
+                            <ul className="secondary" id={props.isActive == "singlepost" ? "selected" : ""}>
                                 <li>
-                                    <a href="singlepost.html">Single post</a>
+                                    <NavLink to="/singlepost">Single Post</NavLink>
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="contact.html">Contact</a>
+                        <li className={props.isActive == "contact" ? "menu selected" : ""}>
+                            <NavLink to="/contact">Contact</NavLink>
                         </li>
                     </ul>
                 </div>

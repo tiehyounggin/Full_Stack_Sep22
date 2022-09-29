@@ -1,8 +1,10 @@
+import Footer from "./Footer";
 import Header from "./Header";
 
 function Home(){
     return(
         <>
+        <Header isActive="home"/>
             <div id="body" className="home">
                 <div className="header">
                     <img src="images/bg-home.jpg" alt=""/>
@@ -43,6 +45,7 @@ function Home(){
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }

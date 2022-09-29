@@ -1,6 +1,10 @@
+import Footer from "./Footer";
+import Header from "./Header";
+
 function Singlepost(){
     return(
         <>
+        <Header isActive="singlepost"/>
             <div id="body">
                 <div className="header">
                     <div>
@@ -26,6 +30,7 @@ function Singlepost(){
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }
