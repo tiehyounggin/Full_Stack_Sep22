@@ -10,6 +10,8 @@ public class ExceptionManagement {
         }catch(CustomException e){
             e.printStackTrace();
         }
+
+        System.out.println("finish");
     }
 
     public static boolean isExist(int[] myArr, int index) throws  CustomException{
