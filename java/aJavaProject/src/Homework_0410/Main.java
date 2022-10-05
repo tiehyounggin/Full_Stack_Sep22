@@ -56,7 +56,7 @@ public class Main {
         myArrListTest.add(new User("Tim", 23));
         myArrListTest.add(new User("simon", 54));
 
-        Collections.sort(myArrListTest, new AnotherCustomComparator.sortUserAgeDsc());
+        Collections.sort(myArrListTest, new AnotherCustomComparator.sortUserNameDsc());
         for (User user :myArrListTest ) {
             System.out.println(user.getName() + " - " + user.getAge());
         }
