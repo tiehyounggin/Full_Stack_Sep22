@@ -9,6 +9,7 @@ import java.util.TreeSet;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Product> myArrList = new ArrayList<Product>();
+        ArrayList<User> myArrListTest = new ArrayList<User>();
         TreeSet<User> myTreeSet = new TreeSet<User>();
 
         myArrList.add(new Product("product1", 88.88));
@@ -47,6 +48,22 @@ public class Main {
 //        for (User user :myTreeSet.descendingSet() ) {
 //            System.out.println(user.getName() + " - " + user.getAge());
 //        }
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
+        myArrListTest.add(new User("Acute", 74));
+        myArrListTest.add(new User("amy", 42));
+        myArrListTest.add(new User("Johnny", 16));
+        myArrListTest.add(new User("johnny", 62));
+        myArrListTest.add(new User("Tim", 23));
+        myArrListTest.add(new User("simon", 54));
+
+        Collections.sort(myArrListTest, new AnotherCustomComparator.sortUserAgeDsc());
+        for (User user :myArrListTest ) {
+            System.out.println(user.getName() + " - " + user.getAge());
+        }
+
+        System.out.println("-----------------------");
+        System.out.println("-----------------------");
+
 
     }
 
