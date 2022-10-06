@@ -2,7 +2,6 @@ package Homework_0610;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,9 +10,9 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ArrayList<User> myArrList = new ArrayList<>();
-        String pathName = Paths.get("").toAbsolutePath().toString() + "\\src\\Homework_0610\\";
+        String pathName = Paths.get("").toAbsolutePath() + "\\src\\Homework_0610\\";
         String fileName = "Sample File.txt";
 
         for(int i=1; i<=10; i++){
