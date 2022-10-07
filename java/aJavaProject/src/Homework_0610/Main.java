@@ -2,6 +2,8 @@ package Homework_0610;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +25,14 @@ public class Main {
 
         if(aFile.exists()){
             System.out.println("File found");
+//            try {
+//                System.out.println(new File(".").getCanonicalPath());
+//                System.out.println(Paths.get("").toAbsolutePath());
+//                System.out.println(new File("./").getAbsolutePath());
+//                System.out.println(Files.readString(Paths.get("src\\Homework_0610\\", fileName)));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         }else{
             System.out.println("File is nowhere to be found");
             try{
