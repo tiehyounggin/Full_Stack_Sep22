@@ -1,16 +1,16 @@
 package com.someSpring.Model;
 
-public class Calculator {
+public class CalculatorModel {
     private double num1 = 0;
     private double num2 = 0;
     private operator anOperator;
     public enum operator {addition, subtraction, multiplication, division}
 
-    public Calculator(){
+    public CalculatorModel(){
 
     }
 
-    public Calculator(double num1, double num2, operator anOperator){
+    public CalculatorModel(double num1, double num2, operator anOperator){
         this.num1 = num1;
         this.num2 = num2;
         this.anOperator = anOperator;

@@ -4,14 +4,14 @@ import Header from "./Header";
 
 function Contact(){
 
-    const [name, setName] = useState("");
-    const [job, setJob] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [output, setOutput] = useState("");
 
     const postBtn = () => {
-        let anObj = {"name": name, "job": job};
+        let anObj = {"username": username, "password": password};
 
-            fetch("https://reqres.in/api/users",
+            fetch("http://localhost:8080/login",
             {
                 method:"POST",
                 body:JSON.stringify(anObj),
@@ -24,6 +24,23 @@ function Contact(){
             .catch(err => console.log(err))
             
     }
+
+    // const postBtn = () => {
+    //     let anObj = {"name": name, "job": job};
+
+    //         fetch("https://reqres.in/api/users",
+    //         {
+    //             method:"POST",
+    //             body:JSON.stringify(anObj),
+    //             headers:{
+    //                 'Content-Type': 'application/json'
+    //             },
+    //         })
+    //         .then(res => res.json())
+    //         .then(res2 => {console.log(res2); setOutput(res2)})
+    //         .catch(err => console.log(err))
+            
+    // }
 
     return(
         <>
@@ -54,17 +71,17 @@ function Contact(){
                                 <form name="sentMessage" id="contactForm" noValidate="novalidate">
                                     <div className="form-row">
                                         <div className="col-sm-6 control-group">
-                                            <input onChange={e => setName(e.target.value)} type="text" className="form-control p-4" id="name" placeholder="Enter name" required="required" data-validation-required-message="Please enter a name" />
+                                            <input onChange={e => setUsername(e.target.value)} type="text" className="form-control p-4" id="name" placeholder="Enter username" required="required" data-validation-required-message="Please enter a name" />
                                             <p className="help-block text-danger"></p>
                                         </div>
                                         <div className="col-sm-6 control-group">
-                                            <input onChange={e => setJob(e.target.value)} type="text" className="form-control p-4" placeholder="Enter job" required="required" data-validation-required-message="Please enter a job" />
+                                            <input onChange={e => setPassword(e.target.value)} type="text" className="form-control p-4" placeholder="Enter password" required="required" data-validation-required-message="Please enter a job" />
                                             <p className="help-block text-danger"></p>
                                         </div>
                                     </div>
                                 </form>
                                 <div>
-                                    <button onClick={postBtn} className="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">Post me!!</button>
+                                    <button onClick={postBtn} className="btn btn-primary btn-block py-3 px-5" type="submit" id="sendMessageButton">LOG ME IN</button>
                                 </div>
                                 <span>{JSON.stringify(output)}</span>
                             </div>
