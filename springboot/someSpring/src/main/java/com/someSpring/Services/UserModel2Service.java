@@ -18,7 +18,7 @@ public class UserModel2Service {
     public boolean addUser2(UserRequest userRequest) throws Exception{
         System.out.println("Inside add user 2 service now..");
         try{
-            Optional<UserModel2> aUser = userModel2Repo.getUserByEmail(userRequest.getEmail());
+            Optional <UserModel2> aUser = userModel2Repo.getUserByEmail(userRequest.getEmail());
 
             if(aUser.isPresent()){
                 throw new Exception("Email already exist");
@@ -46,17 +46,25 @@ public class UserModel2Service {
     }
 
     public boolean updateUser(Integer user_id, UserRequest2 userRequest2) throws Exception{
-        UserModel2 userModel2 = userModel2Repo.findById(user_id).get();
+
 
         try{
-            userModel2.setAddress(userRequest2.getAddress());
-            userModel2.setEmail(userRequest2.getEmail());
-            userModel2.setPassword(userRequest2.getPassword());
-            userModel2.setName(userRequest2.getName());
-            userModel2.setMobile(userRequest2.getMobile());
+            Optional <UserModel2> aUser = userModel2Repo.findById(user_id);
 
-            userModel2Repo.save(userModel2);
-            return true;
+            if(aUser.isPresent()){
+                UserModel2 userModel2 = userModel2Repo.findById(user_id).get();
+
+                userModel2.setAddress(userRequest2.getAddress());
+                userModel2.setEmail(userRequest2.getEmail());
+                userModel2.setPassword(userRequest2.getPassword());
+                userModel2.setName(userRequest2.getName());
+                userModel2.setMobile(userRequest2.getMobile());
+
+                userModel2Repo.save(userModel2);
+                return true;
+            }else{
+                throw new Exception("User does not exist");
+            }
         }catch (Exception e){
             e.printStackTrace();
             throw e;
@@ -64,11 +72,21 @@ public class UserModel2Service {
     }
 
     public boolean deleteUser(Integer user_id) throws Exception{
-        UserModel2 userModel2 = userModel2Repo.findById(user_id).get();
+
 
         try{
-            userModel2Repo.delete(userModel2);
-            return true;
+            Optional <UserModel2> aUser = userModel2Repo.findById(user_id);
+
+            if(aUser.isPresent()){
+                UserModel2 userModel2 = userModel2Repo.findById(user_id).get();
+
+                userModel2Repo.delete(userModel2);
+                return true;
+            }else{
+                throw new Exception("User does not exist");
+            }
+
+
         }catch (Exception e){
             e.printStackTrace();
             throw e;
