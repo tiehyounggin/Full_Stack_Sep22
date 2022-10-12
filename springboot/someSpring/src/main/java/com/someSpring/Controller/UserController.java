@@ -2,12 +2,12 @@ package com.someSpring.Controller;
 
 import com.someSpring.GeneralResponses.GeneralResponse;
 import com.someSpring.Model.UserModel;
-import jdk.jshell.spi.ExecutionControl;
-import org.apache.coyote.Response;
+import com.someSpring.Services.UserModel2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ import java.util.HashMap;
 @RestController
 public class UserController {
     @Autowired
+    UserModel2Service userModel2Service;
 
     @GetMapping("/user")
     public ResponseEntity<?> getUser(){
@@ -72,4 +73,24 @@ public class UserController {
 //            throw new Exception("asdkajfkdlasas");
 //        }
 //    }
+
+    @PostMapping("/userCreate")
+    public ResponseEntity<?> userCreate(){
+        GeneralResponse generalResponse = new GeneralResponse();
+
+        userModel2Service.addUser2();
+
+        generalResponse.setMessage("Creation is done");
+        return ResponseEntity.ok(generalResponse);
+    }
+
+    @GetMapping("/userGet")
+    public ResponseEntity<?> userGet(){
+        GeneralResponse generalResponse = new GeneralResponse();
+
+        userModel2Service.getAllUser();
+
+        generalResponse.setMessage("Getting whole list");
+        return ResponseEntity.ok(generalResponse);
+    }
 }

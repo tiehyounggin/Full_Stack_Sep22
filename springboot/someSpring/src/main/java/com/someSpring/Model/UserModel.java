@@ -1,6 +1,14 @@
 package com.someSpring.Model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class UserModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Integer id;
     private String username = "";
     private String password = "";
 
