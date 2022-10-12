@@ -2,16 +2,16 @@ package com.someSpring.Controller;
 
 import com.someSpring.GeneralResponses.GeneralResponse;
 import com.someSpring.Model.UserModel;
+import com.someSpring.Model.UserModel2;
+import com.someSpring.Request.UserRequest2;
 import com.someSpring.Services.UserModel2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -78,19 +78,55 @@ public class UserController {
     public ResponseEntity<?> userCreate(){
         GeneralResponse generalResponse = new GeneralResponse();
 
-        userModel2Service.addUser2();
+//        userModel2Service.addUser2();
 
         generalResponse.setMessage("Creation is done");
         return ResponseEntity.ok(generalResponse);
     }
 
     @GetMapping("/userGet")
-    public ResponseEntity<?> userGet(){
+    public ResponseEntity<?> getAllUser(){
         GeneralResponse generalResponse = new GeneralResponse();
 
-        userModel2Service.getAllUser();
+        List<UserModel2> myList = userModel2Service.getAllUser();
 
         generalResponse.setMessage("Getting whole list");
-        return ResponseEntity.ok(generalResponse);
+        return ResponseEntity.ok(myList);
+    }
+
+    @GetMapping("/userGet/{user_id}")
+    public ResponseEntity<?> getOneUser(@PathVariable Integer user_id){
+        UserModel2 userModel2 = userModel2Service.getOneUser(user_id);
+
+        return ResponseEntity.ok(userModel2);
+    }
+
+    @PostMapping("/postUser/{user_id}")
+    public ResponseEntity<?> postUser(@PathVariable Integer user_id, @RequestBody UserRequest2 userRequest2){
+
+        GeneralResponse generalResponse = new GeneralResponse();
+
+        try{
+            userModel2Service.updateUser(user_id, userRequest2);
+            generalResponse.setMessage("User has been updated");
+            return ResponseEntity.ok(generalResponse);
+        }catch (Exception e){
+            generalResponse.setMessage(e.getMessage());
+            return ResponseEntity.badRequest().body(generalResponse);
+        }
+    }
+
+    @PostMapping("/deleteUser/{user_id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Integer user_id){
+        GeneralResponse generalResponse = new GeneralResponse();
+
+        try{
+            userModel2Service.deleteUser(user_id);
+            generalResponse.setMessage("User has been deleted");
+            return ResponseEntity.ok(generalResponse);
+        }catch (Exception e){
+            generalResponse.setMessage(e.getMessage());
+            return ResponseEntity.badRequest().body(generalResponse);
+        }
     }
 }

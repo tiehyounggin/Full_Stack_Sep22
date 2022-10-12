@@ -7,6 +7,9 @@ import Header from './Header';
 import Contact from './Contact';
 import Homework2609 from './Homework2609';
 import Homework2709 from './Homework2709';
+import Register from './Register';
+import Login from './Login';
+import Update from './Update';
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/homework2609" element={<Homework2609/>}></Route>
         <Route path="/homework2709" element={<Homework2709/>}></Route>
+        <Route path="/Register" element={<Register/>}></Route>
+        <Route path="/Login" element={<Login/>}></Route>
+        <Route path="/Update" element={<Update/>}></Route>
       </Routes>
     </Router>
     </>
