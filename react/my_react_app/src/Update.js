@@ -66,6 +66,7 @@ function Update(){
             if(!res.ok){
                 throw res;
             }else{
+                getUsersAPI();
                 res.json().then(res2 => console.log(res2))
             }
         })
@@ -97,6 +98,7 @@ function Update(){
     const deleteBtn = () => {
         deleteUserAPI();
         setAUser({});
+        getUsersAPI();
     }
 
     return(
