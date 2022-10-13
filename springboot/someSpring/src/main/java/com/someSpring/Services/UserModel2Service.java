@@ -7,6 +7,7 @@ import com.someSpring.Request.UserRequest2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -102,11 +103,57 @@ public class UserModel2Service {
             }
 
             if(userRequest.getEmail().equals(aUser.get().getEmail()) && userRequest.getPassword().equals(aUser.get().getPassword())){
+
+                String token = generateToken(aUser.get());
+                aUser.get().setToken(token);
+                userModel2Repo.setToken(token, aUser.get().getId());
+
                 return aUser.get();
             }else{
                 throw new Exception("Error in user details");
             }
         }catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public void logout(Integer user_id) throws Exception{
+        try{
+            Optional <UserModel2> userModel2 = userModel2Repo.findById(user_id);
+
+            if(userModel2.isPresent()){
+                userModel2Repo.setToken("", userModel2.get().getId());
+            }else{
+                throw new Exception("Error in logout");
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public String generateToken(UserModel2 userModel2){
+        String token = Base64.getEncoder().encode(userModel2.getEmail().getBytes()).toString() + Base64.getEncoder().encode(userModel2.getName().getBytes()).toString();
+        return token;
+    }
+
+    public boolean validateToken(Integer user_id, String token) throws Exception{
+        try{
+            Optional <UserModel2> userModel2 = userModel2Repo.findById(user_id);
+
+            if(userModel2.isPresent()){
+                if(token.equals(userModel2.get().getToken())){
+                    System.out.println("token match!");
+                    return true;
+                }else{
+                    throw new Exception("Error in token...");
+                }
+            }else{
+                throw new Exception("Error in token validation");
+            }
+        }catch(Exception e){
             e.printStackTrace();
             throw e;
         }

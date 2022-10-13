@@ -16,6 +16,7 @@ public class UserModel2 {
     String address;
     @JsonIgnore
     String password;
+    String token;
 
     public UserModel2(){
 
@@ -75,5 +76,13 @@ public class UserModel2 {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

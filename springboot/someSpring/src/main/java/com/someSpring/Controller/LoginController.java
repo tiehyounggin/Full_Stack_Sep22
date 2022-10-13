@@ -7,10 +7,7 @@ import com.someSpring.Request.UserRequest;
 import com.someSpring.Services.UserModel2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +86,20 @@ public class LoginController {
             generalResponse.setMessage("Login success");
             return ResponseEntity.ok(userModel2);
         }catch (Exception e){
+            generalResponse.setMessage(e.getMessage());
+            return ResponseEntity.badRequest().body(generalResponse);
+        }
+    }
+
+    @PostMapping("/logout/{user_id}")
+    public ResponseEntity<?> logout(@PathVariable Integer user_id){
+        GeneralResponse generalResponse = new GeneralResponse();
+
+        try{
+            userModel2Service.logout(user_id);
+            generalResponse.setMessage("User logged out successfully");
+            return ResponseEntity.ok(generalResponse);
+        }catch(Exception e){
             generalResponse.setMessage(e.getMessage());
             return ResponseEntity.badRequest().body(generalResponse);
         }
