@@ -18,30 +18,36 @@ public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //        return HandlerInterceptor.super.preHandle(request, response, handler);
-        String currentUrl = request.getRequestURL().toString();
-        System.out.println(currentUrl);
+        try{
+            String currentUrl = request.getRequestURL().toString();
+            System.out.println(currentUrl);
 
-        if(currentUrl.contains("login")){
-            System.out.println("in url contains login now");
-            return true;
-        }
+            if(currentUrl.contains("login") || currentUrl.contains("register") || currentUrl.contains("Image")){
+                System.out.println("in url contains login now");
+                return true;
+            }
 
-        System.out.println("not in url contains login");
-        String token = request.getHeader("token");
-        String user_id = request.getHeader("user_id");
+            System.out.println("not in url contains login");
+            String token = request.getHeader("token");
+            String user_id = request.getHeader("user_id");
 
-        if(token == null || token.isEmpty()){
-            throw new Exception("token is empty");
-        }
+            if(token == null || token.isEmpty()){
+                throw new Exception("token is empty");
+            }
 
-        if(user_id == null || user_id.isEmpty()){
-            throw new Exception("id is empty");
-        }
+            if(user_id == null || user_id.isEmpty()){
+                throw new Exception("id is empty");
+            }
 
-        if(userModel2Service.validateToken(Integer.parseInt(user_id), token)){
-            return true;
-        }else{
-            return false;
+            userModel2Service.isTokenAlive(token);
+
+            if(userModel2Service.validateToken(Integer.parseInt(user_id), token)){
+                return true;
+            }else{
+                return false;
+            }
+        }catch(Exception e){
+            throw new CustomException(e.getMessage());
         }
     }
 

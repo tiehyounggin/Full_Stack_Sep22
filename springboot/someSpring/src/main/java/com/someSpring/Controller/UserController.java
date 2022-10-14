@@ -1,14 +1,20 @@
 package com.someSpring.Controller;
 
+import com.someSpring.Configuration.CustomException;
 import com.someSpring.GeneralResponses.GeneralResponse;
 import com.someSpring.Model.UserModel;
 import com.someSpring.Model.UserModel2;
 import com.someSpring.Request.UserRequest2;
 import com.someSpring.Services.UserModel2Service;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +23,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserModel2Service userModel2Service;
+
+    String imageFilePathAbs = "C:\\Users\\bluey\\OneDrive\\Documents\\GitHub\\Full_Stack_Sep22\\springboot\\someSpring\\src\\main\\java\\com\\someSpring\\Images\\";
 
     @GetMapping("/user")
     public ResponseEntity<?> getUser(){
@@ -129,4 +137,34 @@ public class UserController {
             return ResponseEntity.badRequest().body(generalResponse);
         }
     }
+
+    @PostMapping("/uploadImage")
+    public ResponseEntity<?> uploadImage(@RequestParam Integer user_id, @RequestParam MultipartFile multipartFile) throws Exception {
+        GeneralResponse generalResponse = new GeneralResponse();
+
+        System.out.println(user_id + " " + multipartFile.getOriginalFilename());
+
+        FileOutputStream fileOutputStream = new FileOutputStream(imageFilePathAbs + multipartFile.getOriginalFilename());
+        fileOutputStream.write(multipartFile.getBytes());
+        fileOutputStream.close();
+
+        userModel2Service.setUserProfilePic(user_id, multipartFile.getOriginalFilename());
+
+        generalResponse.setMessage("image upload successful");
+        return ResponseEntity.ok(generalResponse);
+    }
+
+    @GetMapping(value = "/getImage/{user_id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public byte[] getImage(@PathVariable Integer user_id) throws Exception{
+
+        String fileName = userModel2Service.getUserProfilePic(user_id);
+
+        System.out.println(imageFilePathAbs + fileName);
+
+        FileInputStream fileInputStream = new FileInputStream(imageFilePathAbs + fileName);
+//        fileInputStream.close();
+
+        return IOUtils.toByteArray(fileInputStream);
+    }
+
 }

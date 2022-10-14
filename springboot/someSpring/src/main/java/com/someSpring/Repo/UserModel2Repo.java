@@ -19,4 +19,12 @@ public interface UserModel2Repo extends JpaRepository<UserModel2, Integer> {
     @Transactional
     @Query("update UserModel2 set token = ?1 where id = ?2")
     void setToken(String token, Integer id);
+
+    @Modifying
+    @Transactional
+    @Query("update UserModel2 set profile_pic = ?2 where id = ?1")
+    void setProfilePic(Integer id, String profilePic);
+
+    @Query("select profile_pic from UserModel2 where id = ?1")
+    String getProfilePic(Integer user_id);
 }

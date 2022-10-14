@@ -1,5 +1,6 @@
 package com.someSpring.Controller;
 
+import com.someSpring.Configuration.CustomException;
 import com.someSpring.GeneralResponses.GeneralResponse;
 import com.someSpring.Model.UserModel;
 import com.someSpring.Model.UserModel2;
@@ -92,16 +93,16 @@ public class LoginController {
     }
 
     @PostMapping("/logout/{user_id}")
-    public ResponseEntity<?> logout(@PathVariable Integer user_id){
+    public ResponseEntity<?> logout(@PathVariable Integer user_id) throws Exception {
         GeneralResponse generalResponse = new GeneralResponse();
 
-        try{
+//        try{
             userModel2Service.logout(user_id);
             generalResponse.setMessage("User logged out successfully");
             return ResponseEntity.ok(generalResponse);
-        }catch(Exception e){
-            generalResponse.setMessage(e.getMessage());
-            return ResponseEntity.badRequest().body(generalResponse);
-        }
+//        }catch(Exception e){
+//            generalResponse.setMessage(e.getMessage());
+//            return ResponseEntity.badRequest().body(generalResponse);
+//        }
     }
 }
