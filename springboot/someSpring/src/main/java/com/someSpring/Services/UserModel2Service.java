@@ -100,12 +100,12 @@ public class UserModel2Service {
         }
     }
 
-    public UserModel2 login(UserRequest userRequest)throws Exception{
+    public UserModel2 login(UserRequest userRequest)throws CustomException{
         try{
             Optional<UserModel2> aUser = userModel2Repo.getUserByEmail(userRequest.getEmail());
 
             if(userModel2Repo.getUserByEmail(userRequest.getEmail()).stream().count() < 1){
-                throw new Exception("Error in user details");
+                throw new CustomException("Error in user details");
             }
 
             if(userRequest.getEmail().equals(aUser.get().getEmail()) && userRequest.getPassword().equals(aUser.get().getPassword())){
@@ -116,7 +116,7 @@ public class UserModel2Service {
 
                 return aUser.get();
             }else{
-                throw new Exception("Error in user details");
+                throw new CustomException("Error in user details");
             }
         }catch (Exception e){
             e.printStackTrace();

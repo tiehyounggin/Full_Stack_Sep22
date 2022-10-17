@@ -22,6 +22,11 @@ public class TokenInterceptor implements HandlerInterceptor {
             String currentUrl = request.getRequestURL().toString();
             System.out.println(currentUrl);
 
+            System.out.println("method here: " + request.getMethod());
+            if(request.getMethod().equals("OPTIONS")){
+                return true;
+            }
+
             if(currentUrl.contains("login") || currentUrl.contains("register") || currentUrl.contains("Image")){
                 System.out.println("in url contains login now");
                 return true;
@@ -29,7 +34,9 @@ public class TokenInterceptor implements HandlerInterceptor {
 
             System.out.println("not in url contains login");
             String token = request.getHeader("token");
+            System.out.println(token);
             String user_id = request.getHeader("user_id");
+            System.out.println(user_id);
 
             if(token == null || token.isEmpty()){
                 throw new Exception("token is empty");

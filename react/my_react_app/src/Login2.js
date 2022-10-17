@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { postRequestWithoutHeader } from "./CommonMethods";
 import Header from "./Header";
 
 function Login2(){
 
+    let navigate = useNavigate();
     const [email, setMyEmail] = useState("");
     const [password, setMyPassword] = useState("");
     const [output, setOutput] = useState({});
@@ -14,14 +17,7 @@ function Login2(){
         let anObj = {"email": email, "password": password}
         // console.log(email + " - " + password);
 
-        fetch("http://localhost:8080/login3",
-        {
-            method:"POST",
-            body:JSON.stringify(anObj),
-            headers:{
-                'Content-Type': 'application/json'
-            },
-        })
+        postRequestWithoutHeader("login3", anObj)
         // .then(res => res.json())
         // .then(res2 => {console.log(res2); setOutput(res2);})
         // .catch(error => {console.log(error);})
@@ -31,14 +27,11 @@ function Login2(){
                 throw res;
             }else{
                 setErrorObj("");
-                res.json().then(res2 => {console.log(res2); setOutput(res2);})
+                res.json().then(res2 => {console.log(res2); setOutput(res2); localStorage.setItem("user_id", res2.id); localStorage.setItem("token", res2.token); })
+                navigate("/Contact");
             }
         })
-        .catch(error => {
-            error.json().then(e => {
-                setErrorObj(e.message)
-            })
-        })
+        .catch(err => err.json().then(err2 => setErrorObj(err2.message)))
     };
 
     return(
@@ -50,7 +43,7 @@ function Login2(){
                     <div className="row" style={{backgroundColor:"gainsboro"}}>
                         <div className="col-6">
                         <div className="row form-group">
-                            <div class="row">
+                            <div className="row">
                                 <div className="col-4">
                                     <label>Enter email:</label>
                                 </div>

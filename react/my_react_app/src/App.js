@@ -11,6 +11,7 @@ import Register from './Register';
 import Login from './Login';
 import Update from './Update';
 import Login2 from './Login2';
+import Logout from './Logout';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/Login" element={<Login/>}></Route>
         <Route path="/Update" element={<Update/>}></Route>
         <Route path="/Login2" element={<Login2/>}></Route>
+        <Route path="/Logout" element={<Logout/>}></Route>
       </Routes>
     </Router>
     </>

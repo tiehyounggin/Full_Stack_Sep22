@@ -139,14 +139,18 @@ public class UserController {
     }
 
     @PostMapping("/uploadImage")
-    public ResponseEntity<?> uploadImage(@RequestParam Integer user_id, @RequestParam MultipartFile multipartFile) throws Exception {
+    public ResponseEntity<?> uploadImage(@RequestParam Integer user_id, @RequestParam MultipartFile multipartFile) throws CustomException {
         GeneralResponse generalResponse = new GeneralResponse();
 
         System.out.println(user_id + " " + multipartFile.getOriginalFilename());
 
-        FileOutputStream fileOutputStream = new FileOutputStream(imageFilePathAbs + multipartFile.getOriginalFilename());
-        fileOutputStream.write(multipartFile.getBytes());
-        fileOutputStream.close();
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream(imageFilePathAbs + multipartFile.getOriginalFilename());
+            fileOutputStream.write(multipartFile.getBytes());
+            fileOutputStream.close();
+        }catch (Exception e){
+            throw new CustomException("some error in upload image");
+        }
 
         userModel2Service.setUserProfilePic(user_id, multipartFile.getOriginalFilename());
 
